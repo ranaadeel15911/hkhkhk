@@ -38,7 +38,7 @@ console.log(user)
                             email:res.data.email,
                             picture:res.data.picture
                         }
-                        const resa =await axios.post("http://localhost:5000/google-auth",user) 
+                        const resa =await axios.post("https://server-google-auth.vercel.app/google-auth",user) 
                         // setProfile(res.data);
                         console.log(resa)
                         if (resa.data) {
