@@ -3,8 +3,13 @@ import './App.css'
 import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
+import { jwtDecode } from "jwt-decode";
 function App() {
+  const token = localStorage.getItem("token")
+  const decoded = jwtDecode(token);
+  // const [profile , setProfile]=useState()
+  // console.log(decoded)
+  console.log(decoded?.email)
   const navigate = useNavigate()
 const [ user, setUser ] = useState([]);
 console.log(user)
@@ -75,6 +80,18 @@ console.log(user)
             ) : (
                 <button onClick={login}>Sign in with Google 🚀 </button>
             )}
+             <div>{
+        decoded &&
+        <>
+        Emal : {decoded.email}
+        Name : {decoded.name}
+        { decoded.picture && 
+          <img src={decoded.picture} alt="feck" />
+        }
+        </>
+        }
+        
+        </div>
         </div>
     </>
   )
